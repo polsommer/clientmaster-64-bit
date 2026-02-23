@@ -1,36 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
+    <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Optimized|Win32">
+    <ProjectConfiguration Include="Optimized|x64">
       <Configuration>Optimized</Configuration>
-      <Platform>Win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
+    <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CF3B1EE2-D965-44E1-9464-01297964F2CB}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Optimized|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Optimized|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
@@ -39,15 +39,15 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Optimized|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Optimized|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
@@ -55,42 +55,42 @@
   <PropertyGroup>
     <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Debug\</OutDir>
-    <IntDir>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Debug\</IntDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Debug\</OutDir>
+    <IntDir>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
     <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
     <TargetName>gl07_d</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Optimized|Win32'">
-    <OutDir>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Optimized\</OutDir>
-    <IntDir>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Optimized\</IntDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Optimized|x64'">
+    <OutDir>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Optimized\</OutDir>
+    <IntDir>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Optimized\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
     <TargetName>gl07_o</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Release\</OutDir>
-    <IntDir>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Release\</IntDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Release\</OutDir>
+    <IntDir>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
     <TargetName>gl07_r</TargetName>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Debug/Direct3d9_vsps.tlb</TypeLibraryName>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Debug/Direct3d9_vsps.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..\..\..\..\..\..\external\3rd\library\libjpeg\include;..\..\..\..\..\..\external\3rd\library\stlport453\stlport;..\..\..\..\..\..\external\ours\library\fileInterface\include\public;..\..\..\..\..\..\external\3rd\library\directx9\include;..\..\..\..\..\client\library\clientGraphics\include\public;..\..\..\..\..\shared\library\sharedDebug\include\public;..\..\..\..\..\shared\library\sharedFile\include\public;..\..\..\..\..\shared\library\sharedFoundation\include\public;..\..\..\..\..\shared\library\sharedFoundationTypes\include\public;..\..\..\..\..\shared\library\sharedMath\include\public;..\..\..\..\..\shared\library\sharedMemoryManager\include\public;..\..\..\..\..\shared\library\sharedObject\include\public;..\..\..\..\..\shared\library\sharedSynchronization\include\public;..\..\src\shared;..\..\src\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;DEBUG_LEVEL=2;WIN32;_WINDOWS;_USRDLL;DIRECT3D9_EXPORTS;VSPS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG_LEVEL=2;_WIN64;_WINDOWS;_USRDLL;DIRECT3D9_EXPORTS;VSPS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -98,10 +98,10 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>FirstDirect3d9.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Debug/Direct3d9_vsps.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Debug/</AssemblerListingLocation>
-      <ObjectFileName>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Debug/</ObjectFileName>
-      <ProgramDataBaseFileName>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Debug/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Debug/Direct3d9_vsps.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Debug/</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <TreatWarningAsError>false</TreatWarningAsError>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -114,50 +114,50 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>libjpeg.lib;odbc32.lib;odbccp32.lib;winmm.lib;delayimp.lib;dxguid.lib;d3d9.lib;d3dx9.lib;ddraw.lib;dxerr9.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Debug\gl07_d.dll</OutputFile>
+      <OutputFile>..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Debug\gl07_d.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\..\..\..\..\external\3rd\library\libjpeg\lib;..\..\..\..\..\..\external\3rd\library\directx9\lib;..\..\..\..\..\..\external\3rd\library\stlport453\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\..\..\..\external\3rd\library\libjpeg\lib;..\..\..\..\..\..\external\3rd\library\directx9\lib;..\..\..\..\..\..\external\3rd\library\stlport453\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libc; libcp;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <DelayLoadDLLs>DllExport.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Debug/gl07_d.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Debug/gl07_d.pdb</ProgramDatabaseFile>
       <BaseAddress>0x62A00000</BaseAddress>
-      <ImportLibrary>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Debug/gl07_d.lib</ImportLibrary>
-      <TargetMachine>MachineX86</TargetMachine>
+      <ImportLibrary>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Debug/gl07_d.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Debug/Direct3d9_vsps.bsc</OutputFile>
+      <OutputFile>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Debug/Direct3d9_vsps.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Copy debug dll</Message>
-      <Command>copy $(TargetPath) ..\..\..\..\..\..\..\dev\win32\gl07_d.dll</Command>
+      <Command>copy $(TargetPath) ..\..\..\..\..\..\..\dev\win64\gl07_d.dll</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Optimized|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Optimized|x64'">
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Optimized/Direct3d9_vsps.tlb</TypeLibraryName>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Optimized/Direct3d9_vsps.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\..\..\..\external\3rd\library\stlport453\stlport;..\..\..\..\..\..\external\ours\library\fileInterface\include\public;..\..\..\..\..\..\external\3rd\library\directx9\include;..\..\..\..\..\..\external\3rd\library\libjpeg\include;..\..\..\..\..\client\library\clientGraphics\include\public;..\..\..\..\..\shared\library\sharedDebug\include\public;..\..\..\..\..\shared\library\sharedFile\include\public;..\..\..\..\..\shared\library\sharedFoundation\include\public;..\..\..\..\..\shared\library\sharedFoundationTypes\include\public;..\..\..\..\..\shared\library\sharedMath\include\public;..\..\..\..\..\shared\library\sharedMemoryManager\include\public;..\..\..\..\..\shared\library\sharedObject\include\public;..\..\..\..\..\shared\library\sharedSynchronization\include\public;..\..\src\shared;..\..\src\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;DEBUG_LEVEL=1;WIN32;_WINDOWS;_USRDLL;DIRECT3D9_EXPORTS;VSPS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;DEBUG_LEVEL=1;_WIN64;_WINDOWS;_USRDLL;DIRECT3D9_EXPORTS;VSPS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>FirstDirect3d9.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Optimized/Direct3d9_vsps.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Optimized/</AssemblerListingLocation>
-      <ObjectFileName>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Optimized/</ObjectFileName>
-      <ProgramDataBaseFileName>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Optimized/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Optimized/Direct3d9_vsps.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Optimized/</AssemblerListingLocation>
+      <ObjectFileName>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Optimized/</ObjectFileName>
+      <ProgramDataBaseFileName>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Optimized/</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <TreatWarningAsError>false</TreatWarningAsError>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -169,41 +169,41 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>libjpeg.lib;odbc32.lib;odbccp32.lib;winmm.lib;delayimp.lib;dxguid.lib;d3d9.lib;d3dx9.lib;ddraw.lib;dxerr9.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Optimized\gl07_o.dll</OutputFile>
+      <OutputFile>..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Optimized\gl07_o.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\..\..\..\..\external\3rd\library\directx9\lib;..\..\..\..\..\..\external\3rd\library\libjpeg\lib;..\..\..\..\..\..\external\3rd\library\stlport453\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\..\..\..\external\3rd\library\directx9\lib;..\..\..\..\..\..\external\3rd\library\libjpeg\lib;..\..\..\..\..\..\external\3rd\library\stlport453\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libc; libcp;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <DelayLoadDLLs>DllExport.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Optimized/gl07_o.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Optimized/gl07_o.pdb</ProgramDatabaseFile>
       <BaseAddress>0x62A00000</BaseAddress>
-      <ImportLibrary>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Optimized/gl07_o.lib</ImportLibrary>
-      <TargetMachine>MachineX86</TargetMachine>
+      <ImportLibrary>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Optimized/gl07_o.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Optimized/Direct3d9_vsps.bsc</OutputFile>
+      <OutputFile>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Optimized/Direct3d9_vsps.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Copy optimized dll</Message>
-      <Command>copy $(TargetPath) ..\..\..\..\..\..\..\dev\win32\gl07_o.dll</Command>
+      <Command>copy $(TargetPath) ..\..\..\..\..\..\..\dev\win64\gl07_o.dll</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Release/Direct3d9_vsps.tlb</TypeLibraryName>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Release/Direct3d9_vsps.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..\..\..\..\..\..\external\3rd\library\stlport453\stlport;..\..\..\..\..\..\external\ours\library\fileInterface\include\public;..\..\..\..\..\..\external\3rd\library\directx9\include;..\..\..\..\..\..\external\3rd\library\libjpeg\include;..\..\..\..\..\client\library\clientGraphics\include\public;..\..\..\..\..\shared\library\sharedDebug\include\public;..\..\..\..\..\shared\library\sharedFile\include\public;..\..\..\..\..\shared\library\sharedFoundation\include\public;..\..\..\..\..\shared\library\sharedFoundationTypes\include\public;..\..\..\..\..\shared\library\sharedMath\include\public;..\..\..\..\..\shared\library\sharedMemoryManager\include\public;..\..\..\..\..\shared\library\sharedObject\include\public;..\..\..\..\..\shared\library\sharedSynchronization\include\public;..\..\src\shared;..\..\src\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;DEBUG_LEVEL=0;WIN32;_WINDOWS;_USRDLL;DIRECT3D9_EXPORTS;VSPS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;DEBUG_LEVEL=0;_WIN64;_WINDOWS;_USRDLL;DIRECT3D9_EXPORTS;VSPS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -211,10 +211,10 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>FirstDirect3d9.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Release/Direct3d9_vsps.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Release/</AssemblerListingLocation>
-      <ObjectFileName>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Release/</ObjectFileName>
-      <ProgramDataBaseFileName>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Release/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Release/Direct3d9_vsps.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Release/</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <TreatWarningAsError>false</TreatWarningAsError>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -227,25 +227,25 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>libjpeg.lib;odbc32.lib;odbccp32.lib;winmm.lib;delayimp.lib;dxguid.lib;d3d9.lib;d3dx9.lib;ddraw.lib;dxerr9.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Release\gl07_r.dll</OutputFile>
+      <OutputFile>..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Release\gl07_r.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\..\..\..\..\external\3rd\library\directx9\lib;..\..\..\..\..\..\external\3rd\library\libjpeg\lib;..\..\..\..\..\..\external\3rd\library\stlport453\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\..\..\..\external\3rd\library\directx9\lib;..\..\..\..\..\..\external\3rd\library\libjpeg\lib;..\..\..\..\..\..\external\3rd\library\stlport453\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libc; libcp;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <DelayLoadDLLs>DllExport.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Release/gl07_r.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Release/gl07_r.pdb</ProgramDatabaseFile>
       <BaseAddress>0x62A00000</BaseAddress>
-      <ImportLibrary>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Release/gl07_r.lib</ImportLibrary>
-      <TargetMachine>MachineX86</TargetMachine>
+      <ImportLibrary>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Release/gl07_r.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\..\..\..\..\..\compile\win32\Direct3d9_vsps\Release/Direct3d9_vsps.bsc</OutputFile>
+      <OutputFile>.\..\..\..\..\..\..\compile\win64\Direct3d9_vsps\Release/Direct3d9_vsps.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Copy production dll</Message>
-      <Command>copy $(TargetPath) ..\..\..\..\..\..\..\dev\win32\gl07_r.dll</Command>
+      <Command>copy $(TargetPath) ..\..\..\..\..\..\..\dev\win64\gl07_r.dll</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -274,9 +274,9 @@
     <ClCompile Include="..\..\src\win32\Direct3d9_VertexDeclarationMap.cpp" />
     <ClCompile Include="..\..\src\win32\Direct3d9_VertexShaderData.cpp" />
     <ClCompile Include="..\..\src\win32\FirstDirect3d9.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Optimized|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Optimized|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
