@@ -1,0 +1,56 @@
+/*! \file TreeFileBuilder.dox
+    \page treefilebuilder_usage TreeFileBuilder Command Line Reference
+
+    \section tfb_usage Usage
+    \verbatim
+    TreeFileBuilder {-r <filename>|--responseFile=<filename>} [options] <treeFileName>
+    TreeFileBuilder --decrypt=<sourceTres|sourceTresx> [--decryptOutput=<outputTre>] [--passphrase=<key>]
+    TreeFileBuilder {-h|--help}
+
+    Examples:
+      TreeFileBuilder -r assets.rsp output.tre
+      TreeFileBuilder -r assets.rsp output.tresx --passphrase=MyKey
+      TreeFileBuilder --decrypt=output.tresx --decryptOutput=output.tre --passphrase=MyKey
+    \endverbatim
+
+    \section tfb_parameters Parameters
+    \verbatim
+      -r <filename>, --responseFile=<filename>
+          specifies the file list used to create the treefile (no extension)
+
+      -t, --noTOCCompression
+          disable compression for table-of-contents data only
+
+      -f, --noFileCompression
+          disable compression for file entry data as well as table-of-contents data
+
+      -e, --encrypt
+          force encryption of the output tree file
+
+      -n, --noEncrypt
+          disable encryption even when generating a .tres or .tresx output
+
+      -p <key>, --passphrase=<key>
+          optional override for the encryption/decryption passphrase
+
+      --decrypt=<filename>
+          decrypt an existing .tres or .tresx file into a .tre
+
+      --decryptOutput=<filename>
+          optional destination when using --decrypt (defaults to positional argument)
+    \endverbatim
+
+    \section tfb_remarks Remarks
+    \verbatim
+        TreeFileBuilder automatically chooses the smallest file size for each entry
+        unless either -t/--noTOCCompression or -f/--noFileCompression is specified.
+
+        Output formats:
+          .tre   Unencrypted tree file.
+          .tres  Encrypted tree file.
+          .tresx Encrypted tree file with stronger compression.
+
+        Passphrases are optional when generating or decrypting .tres/.tresx files.
+        Leaving the passphrase blank uses the default (empty) encryption key.
+    \endverbatim
+*/

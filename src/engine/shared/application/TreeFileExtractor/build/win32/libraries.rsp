@@ -1,0 +1,4 @@
+zlib.lib
+gdi32.lib
+comdlg32.lib
+winspool.lib

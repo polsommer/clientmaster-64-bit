@@ -1,0 +1,3 @@
+// Placeholder color grading shader template used for LUT-driven post-processing.
+// The runtime binds TAG(MAIN) as the scene color, TAG(LUT0) and TAG(LUT1) as 3D LUTs,
+// and uses TAG(GRD0) / TAG(TINT) texture factors for intensity/contrast/tint parameters.

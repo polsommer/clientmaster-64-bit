@@ -1,0 +1,19 @@
+{
+  "connectRatePerSecond": 2.0,
+  "pingIntervalSeconds": 5.0,
+  "accounts": [
+    { "username": "bot_01", "password": "hunter2", "character": "Load Bot 01" },
+    { "username": "bot_02", "password": "hunter2", "character": "Load Bot 02" },
+    { "username": "bot_03", "password": "hunter2", "character": "Load Bot 03" }
+  ],
+  "spawns": [
+    { "planet": "tatooine", "x": 0.0, "y": 0.0, "z": 0.0 },
+    { "planet": "corellia", "x": 100.0, "y": 0.0, "z": -25.0 }
+  ],
+  "behaviors": [
+    "move:north:15",
+    "pause:2",
+    "move:east:5",
+    "attack:nearest"
+  ]
+}

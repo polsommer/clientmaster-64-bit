@@ -1,0 +1,5 @@
+{
+  "map_width_m": 8192,
+  "tile_width_m": 8,
+  "chunk_width_m": 512
+}

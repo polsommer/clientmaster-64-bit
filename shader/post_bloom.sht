@@ -1,0 +1,3 @@
+// Placeholder bloom shader template used for post-process pass graph.
+// This file documents the expected shader path and can be replaced with
+// platform-appropriate implementation assets.

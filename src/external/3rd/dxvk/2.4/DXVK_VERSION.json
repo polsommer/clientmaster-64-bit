@@ -1,0 +1,13 @@
+{
+  "name": "dxvk",
+  "version": "2.4",
+  "architecture": "x32",
+  "runtimeDll": "d3d9.dll",
+  "artifactPath": "src/external/3rd/dxvk/2.4/x32/d3d9.dll",
+  "source": {
+    "release": "https://github.com/doitsujin/dxvk/releases/tag/v2.4",
+    "archive": "dxvk-2.4.tar.gz",
+    "archiveMember": "dxvk-2.4/x32/d3d9.dll"
+  },
+  "notes": "Place the vendor-supplied 32-bit d3d9.dll at artifactPath. Keep this file in sync when bumping DXVK versions."
+}

@@ -1,0 +1,12 @@
+sharedFoundation.lib
+sharedThread.lib
+sharedDebug.lib
+sharedSynchronization.lib
+sharedMemoryManager.lib
+sharedLog.lib
+sharedMessageDispatch.lib
+unicodeArchive.lib
+archive.lib
+sharedNetworkMessages.lib
+fileInterface.lib
+zlib.lib
