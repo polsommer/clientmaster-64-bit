@@ -3,7 +3,7 @@ param(
     [ValidateSet('Release', 'Optimized', 'Debug')]
     [string]$Configuration = 'Release',
 
-    [ValidateSet('win32', 'win64')]
+    [ValidateSet('win64')]
     [string]$Architecture = 'win64',
 
     [ValidateSet('native', 'dxvk')]
@@ -21,7 +21,7 @@ $ErrorActionPreference = 'Stop'
 
 $rendererProjects = @('Direct3d9', 'Direct3d9_ffp', 'Direct3d9_vsps')
 $compileRoot = Join-Path $RepositoryRoot (Join-Path 'src\compile' $Architecture)
-$dxvkArchFolder = if ($Architecture -eq 'win64') { 'x64' } else { 'x32' }
+$dxvkArchFolder = 'x64'
 $dxvkDll = Join-Path $RepositoryRoot (Join-Path 'src\external\3rd\dxvk\2.4' (Join-Path $dxvkArchFolder 'd3d9.dll'))
 
 function Write-DxvkConfigFile {
