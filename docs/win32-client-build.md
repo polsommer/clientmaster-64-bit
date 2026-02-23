@@ -1,7 +1,9 @@
 # Win64 client build steps
 
-This repository ships the legacy client toolchain now standardized on 64-bit outputs through the Visual Studio 2013 solution at `src/build/win32/swg.sln`.
+This repository ships the legacy client toolchain now standardized on 64-bit outputs through the Visual Studio 2013 solution at `src/build/win64/swg.sln`.
 Use the steps below when you need runtime-ready Direct3D 9 renderer DLLs and optional DXVK-enabled packaging.
+
+> **Note:** Some repository paths and helper script names still use `win32` for legacy layout compatibility (for example `tools/win32/` and portions of `src/build/win32`). Build the Visual Studio solution and project matrix using **x64** platform configurations for the current client outputs.
 
 ## Prerequisites
 
@@ -13,7 +15,7 @@ Use the steps below when you need runtime-ready Direct3D 9 renderer DLLs and opt
 
 ## Visual Studio workflow
 
-1. Open `src/build/win32/swg.sln`.
+1. Open `src/build/win64/swg.sln`.
 2. Set **Configuration** to **Release** (or **Optimized**/**Debug** as needed).
 3. Set **Platform** to **x64**.
 4. Build the following renderer projects:
@@ -29,7 +31,7 @@ The resulting renderer DLLs land under `src/compile/win64/Direct3d9*/<Configurat
 From the repository root:
 
 ```bat
-msbuild src/build/win32/swg.sln /p:Configuration=Release /p:Platform=x64 /t:Direct3d9;Direct3d9_ffp;Direct3d9_vsps
+msbuild src/build/win64/swg.sln /p:Configuration=Release /p:Platform=x64 /t:Direct3d9;Direct3d9_ffp;Direct3d9_vsps
 ```
 
 Swap `Release` for `Optimized` or `Debug` as needed.
