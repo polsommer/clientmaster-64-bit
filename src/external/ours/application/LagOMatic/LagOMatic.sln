@@ -10,17 +10,27 @@ EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
+		Debug|x64 = Debug|x64
 		Release = Release
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{2DEADCC8-5B38-472D-9CC0-A49414552DE4}.Debug.ActiveCfg = Debug|.NET
 		{2DEADCC8-5B38-472D-9CC0-A49414552DE4}.Debug.Build.0 = Debug|.NET
+		{2DEADCC8-5B38-472D-9CC0-A49414552DE4}.Debug|x64.ActiveCfg = Debug|.NET
+		{2DEADCC8-5B38-472D-9CC0-A49414552DE4}.Debug|x64.Build.0 = Debug|.NET
 		{2DEADCC8-5B38-472D-9CC0-A49414552DE4}.Release.ActiveCfg = Release|.NET
 		{2DEADCC8-5B38-472D-9CC0-A49414552DE4}.Release.Build.0 = Release|.NET
+		{2DEADCC8-5B38-472D-9CC0-A49414552DE4}.Release|x64.ActiveCfg = Release|.NET
+		{2DEADCC8-5B38-472D-9CC0-A49414552DE4}.Release|x64.Build.0 = Release|.NET
 		{02B5E2B1-E6C5-4B75-B5FE-C0A59B32C0B5}.Debug.ActiveCfg = Debug|Win32
 		{02B5E2B1-E6C5-4B75-B5FE-C0A59B32C0B5}.Debug.Build.0 = Debug|Win32
+		{02B5E2B1-E6C5-4B75-B5FE-C0A59B32C0B5}.Debug|x64.ActiveCfg = Debug|x64
+		{02B5E2B1-E6C5-4B75-B5FE-C0A59B32C0B5}.Debug|x64.Build.0 = Debug|x64
 		{02B5E2B1-E6C5-4B75-B5FE-C0A59B32C0B5}.Release.ActiveCfg = Release|Win32
 		{02B5E2B1-E6C5-4B75-B5FE-C0A59B32C0B5}.Release.Build.0 = Release|Win32
+		{02B5E2B1-E6C5-4B75-B5FE-C0A59B32C0B5}.Release|x64.ActiveCfg = Release|x64
+		{02B5E2B1-E6C5-4B75-B5FE-C0A59B32C0B5}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
