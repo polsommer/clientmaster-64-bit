@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 3.24)
 
 project(SWGGodClientModernized LANGUAGES CXX)
 
+if(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    message(FATAL_ERROR "SWGGodClientModernized requires a 64-bit build (detected 32-bit toolchain).")
+endif()
+
+if(MSVC AND CMAKE_GENERATOR_PLATFORM AND NOT CMAKE_GENERATOR_PLATFORM STREQUAL "x64")
+    message(FATAL_ERROR "SWGGodClientModernized must be generated with -A x64 when using MSVC.")
+endif()
+
 option(SWG_ENABLE_LUA "Enable the embedded Lua automation layer" ON)
 option(SWG_ENABLE_TESTS "Build unit tests for modernised tooling" ON)
 option(SWG_ENABLE_TERRAIN_AUTOPAINTER_HEADLESS "Build the headless TerrainAutoPainter driver" OFF)
