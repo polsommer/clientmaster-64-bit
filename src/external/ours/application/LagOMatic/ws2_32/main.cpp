@@ -1,6 +1,9 @@
 #include "FirstLagger.h"
 #include "Packet.h"
 
+#include <limits.h>
+#include <stdint.h>
+
 using namespace std;
 
 //---------------------------------------------------------------------------
@@ -352,7 +355,15 @@ int WRAP_recvfrom( SOCKET s, char *buf, int /*len*/, int flags, sockaddr *from, 
 			memcpy( buf, p.getData(), dataSize );
 
 			// copy address data into address buffer
-			*fromlen = min( *fromlen, (int)p.getAddressSize() );
+			const size_t packetAddressSize = static_cast<size_t>( p.getAddressSize() );
+			int packetAddressSizeAsInt = INT_MAX;
+
+			if ( packetAddressSize <= static_cast<size_t>( INT_MAX ) )
+			{
+				packetAddressSizeAsInt = static_cast<int>( packetAddressSize );
+			}
+
+			*fromlen = min( *fromlen, packetAddressSizeAsInt );
 			memcpy( from, p.getAddress(), *fromlen );
 
 			// return the number of bytes copied
@@ -391,9 +402,9 @@ void initControlPanelSocket()
 
 		if ( bindResult == SOCKET_ERROR )
 		{
-			s_log.write( "%s: ERROR: unable to bind control panel listener socket (socket=%d error=%d)!",
+			s_log.write( "%s: ERROR: unable to bind control panel listener socket (socket=%llu error=%d)!",
 				cs_dllName,
-				s_cpSocket,
+				static_cast<unsigned long long>( static_cast<uintptr_t>( s_cpSocket ) ),
 				WRAP_WSAGetLastError() );
 		}
 	}
@@ -574,5 +585,4 @@ BOOL WINAPI DllMain( HINSTANCE , DWORD reason, void * )
 
 	return TRUE;
 }
-
 
