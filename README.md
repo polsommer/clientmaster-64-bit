@@ -1,6 +1,16 @@
 # Client/Tools Repo
 This repository contains the source for the SWG Client as well as the tools that support certain aspects of development.
 
+## 🚀 Project Vision: The Perfect 64-bit ClientMaster
+
+We are building the **perfect 64-bit ClientMaster**: a modern, stable, and high-performance foundation that preserves classic gameplay while unlocking faster iteration, better tooling, and long-term maintainability.
+
+### Vision pillars
+
+- **Performance first** — smooth rendering, efficient memory use, and dependable frame times on modern 64-bit systems.
+- **Rock-solid stability** — predictable behavior, safer runtime boundaries, and fewer legacy failure points.
+- **Developer velocity** — clearer build workflows, better automation, and practical tools that reduce friction.
+- **Future-ready architecture** — incremental modernization that keeps the classic client playable while enabling next-generation improvements.
 
 ## authsite shard health environment variables
 
