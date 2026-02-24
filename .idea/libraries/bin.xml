@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="bin">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/engine/client/application/CharacterInfoTool/bin/CharacterInfoToolUI.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/engine/client/application/CharacterInfoTool/bin/ojdbc14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/engine/client/application/CharacterInfoTool/bin/CharacterInfoTool.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/engine/client/application/CharacterInfoTool/bin/ojdbc14_g.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

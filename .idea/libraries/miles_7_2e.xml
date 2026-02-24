@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="miles-7.2e">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/external/3rd/library/miles-7.2e/oggwin.zip!/" />
+      <root url="jar://$PROJECT_DIR$/src/external/3rd/library/miles-7.2e/oggsrc.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
