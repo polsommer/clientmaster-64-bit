@@ -42,8 +42,10 @@ Use the `Graphics` facade to detect the 9Ex environment at runtime:
 When DXVK toggles are present in `[Direct3d9]`, runtime selection follows this order:
 
 1. `enableDxvk=1` has highest precedence and selects DXVK.
-2. If `enableDxvk=0` but `preferDxvkForAmd=1`, DXVK may be auto-selected for AMD GPUs by policy.
+2. If `enableDxvk=0` and `preferDxvkForAmd=1`, DXVK is auto-selected when the active adapter vendor ID matches AMD (`0x1002` or `0x1022`).
 3. If DXVK is not selected, the client uses native Direct3D 9 and attempts the 9Ex path first when `preferDirect3d9Ex=true`.
 4. If 9Ex entry points are unavailable, it falls back to classic Direct3D 9.
+
+Runtime selection also emits `Direct3d9RuntimeSelection` crash-report markers that capture whether DXVK/native was selected and the deciding condition.
 
 Defaults keep existing behavior unless explicitly changed (`enableDxvk=0`, `preferDxvkForAmd=0`).
