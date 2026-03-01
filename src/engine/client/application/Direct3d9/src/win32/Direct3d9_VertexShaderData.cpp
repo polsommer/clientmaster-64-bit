@@ -25,7 +25,7 @@
 
 #include <map>
 #include <vector>
-#include <d3dx9.h>
+#include <windows.h>
 #include <d3dx9shader.h>
 
 // ======================================================================
@@ -60,6 +60,36 @@ namespace Direct3d9_VertexShaderDataNamespace
 
 	typedef std::vector<D3DXMACRO>  Defines;
 	typedef std::map<CrcString const *, Include *, LessPointerComparator> IncludeCache;
+
+	typedef HRESULT (WINAPI *D3dxCompileShaderFn)(LPCSTR, UINT, CONST D3DXMACRO *, LPD3DXINCLUDE, LPCSTR, LPCSTR, DWORD, LPD3DXBUFFER *, LPD3DXBUFFER *, LPD3DXCONSTANTTABLE *);
+	typedef HRESULT (WINAPI *D3dxAssembleShaderFn)(LPCSTR, UINT, CONST D3DXMACRO *, LPD3DXINCLUDE, DWORD, LPD3DXBUFFER *, LPD3DXBUFFER *);
+
+	struct D3dxShaderFunctions
+	{
+		D3dxCompileShaderFn  compileShader;
+		D3dxAssembleShaderFn assembleShader;
+	};
+
+	D3dxShaderFunctions getD3dxShaderFunctions()
+	{
+		static D3dxShaderFunctions s_functions = { NULL, NULL };
+		static bool s_loaded = false;
+		if (!s_loaded)
+		{
+			s_loaded = true;
+			char const * const libraries[] = { "d3dx9_43.dll", "d3dx9_42.dll", "d3dx9_41.dll" };
+			for (size_t i = 0; i < sizeof(libraries) / sizeof(libraries[0]) && !s_functions.compileShader; ++i)
+			{
+				HMODULE module = LoadLibraryA(libraries[i]);
+				if (module)
+				{
+					s_functions.compileShader = reinterpret_cast<D3dxCompileShaderFn>(GetProcAddress(module, "D3DXCompileShader"));
+					s_functions.assembleShader = reinterpret_cast<D3dxAssembleShaderFn>(GetProcAddress(module, "D3DXAssembleShader"));
+				}
+			}
+		}
+		return s_functions;
+	}
 
 	void getToken(char const *& s, char * d);
 	void skipRestOfTheLine(char const *& s);
@@ -430,7 +460,8 @@ IDirect3DVertexShader9 * Direct3d9_VertexShaderData::createVertexShader(uint32 t
 
 		IncludeHandler includeHandler;
 		ID3DXBuffer *error = NULL;
-		HRESULT result = D3DXCompileShader(m_compileText, m_compileTextLength, &(ms_defines.front()), &includeHandler, "main", target, 0, &compiledShader, &error, NULL);
+		D3dxShaderFunctions const functions = getD3dxShaderFunctions();
+		HRESULT result = functions.compileShader ? functions.compileShader(m_compileText, m_compileTextLength, &(ms_defines.front()), &includeHandler, "main", target, 0, &compiledShader, &error, NULL) : E_NOTIMPL;
 
 		//-----------------------------------------------------------------------------------
 		// DBE - I was getting strange Float Invalid Operation Exceptions (0xC0000090) in the 
@@ -518,7 +549,8 @@ IDirect3DVertexShader9 * Direct3d9_VertexShaderData::createVertexShader(uint32 t
 		}
 
 		IncludeHandler includeHandler;
-		HRESULT result = D3DXAssembleShader(m_compileText, m_compileTextLength, &(ms_defines.front()), &includeHandler, 0, &compiledShader, NULL);
+		D3dxShaderFunctions const functions = getD3dxShaderFunctions();
+		HRESULT result = functions.assembleShader ? functions.assembleShader(m_compileText, m_compileTextLength, &(ms_defines.front()), &includeHandler, 0, &compiledShader, NULL) : E_NOTIMPL;
 		FATAL(FAILED(result), ("Could not compile shader %s %d", m_vertexShader->m_fileName.getString(), HRESULT_CODE(result)));
 	}
 

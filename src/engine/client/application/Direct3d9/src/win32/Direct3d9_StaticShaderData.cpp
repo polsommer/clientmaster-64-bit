@@ -27,7 +27,6 @@
 #include "sharedFoundation/CrcLowerString.h"
 
 #include <d3d9.h>
-#include <d3dx9.h>
 #include <stdio.h>
 
 #ifdef _DEBUG

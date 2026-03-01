@@ -8,10 +8,17 @@ Use the steps below when you need runtime-ready Direct3D 9 renderer DLLs and opt
 ## Prerequisites
 
 - Visual Studio 2013 with the v120 toolset installed.
+- Windows 10/11 SDK (or equivalent SDK that provides `d3d9.h`, `d3d9types.h`, and core Win32 headers/libs).
 - A Win64 build environment (32-bit packaging has been removed).
+- Optional but recommended for runtime shader/surface helper parity: install the DirectX End-User Runtime (June 2010) so `d3dx9_4x.dll` is available at runtime when the legacy helper path is exercised.
 - For DXVK packaging, place the pinned runtime file at:
   - `src/external/3rd/dxvk/2.4/x64/d3d9.dll`
   - Version metadata is tracked in `src/external/3rd/dxvk/2.4/DXVK_VERSION.json`.
+
+
+### Direct3D dependency cleanup note (64-bit)
+
+The renderer project files no longer link against `d3dx9.lib` or `dxerr9.lib`. Build-time dependencies are now limited to core platform SDK libraries (for example `d3d9.lib`, `dxguid.lib`, `ddraw.lib`, and Win32 system libraries already listed in each project).
 
 ## Visual Studio workflow
 
