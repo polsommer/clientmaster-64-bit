@@ -91,3 +91,12 @@ powershell -ExecutionPolicy Bypass -File tools/win32/package-win32-renderers.ps1
 - **Native distribution**: do not ship a local `d3d9.dll`; runtime resolves to the OS-provided Direct3D 9 implementation.
 - **DXVK distribution**: ship `d3d9.dll` in the same directory as `SwgClient_r.exe` (and any equivalent launcher/client runtime folder).
 - **Rollback to native runtime**: remove the local `d3d9.dll` from deployment directories, or rerun packaging with `-Runtime native` to clean output targets.
+
+
+## Configuration semantics (x64)
+
+- **Debug**: Uses debug macros/CRT for full development-time diagnostics.
+- **Optimized**: Uses non-debug CRT and `NDEBUG` like Release, while retaining project-specific diagnostic defines (for example `DEBUG_LEVEL=1` in Direct3D9 renderer projects).
+- **Release**: Uses non-debug CRT and `NDEBUG` with production-oriented diagnostic levels/settings.
+
+This keeps Optimized builds diagnostically useful without mixing debug CRT (`/MTd`) into non-debug x64 client renderer outputs.
