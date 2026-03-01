@@ -56,6 +56,15 @@ public:
 	static bool getEnableDxvk();
 	static bool getPreferDxvkForAmd();
 
+	enum RuntimeSelection
+	{
+		RS_nativeDirect3d9,
+		RS_dxvk
+	};
+
+	static bool isAmdVendorId(unsigned int vendorId);
+	static RuntimeSelection getRuntimeSelection(unsigned int vendorId, char const *&reason);
+
 };
 
 // ======================================================================

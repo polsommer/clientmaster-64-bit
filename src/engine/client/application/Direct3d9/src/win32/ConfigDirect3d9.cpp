@@ -246,3 +246,38 @@ bool ConfigDirect3d9::getPreferDxvkForAmd()
 {
 	return ms_preferDxvkForAmd;
 }
+
+
+// ----------------------------------------------------------------------
+
+bool ConfigDirect3d9::isAmdVendorId(unsigned int vendorId)
+{
+	return vendorId == 0x1002u || vendorId == 0x1022u;
+}
+
+// ----------------------------------------------------------------------
+
+ConfigDirect3d9::RuntimeSelection ConfigDirect3d9::getRuntimeSelection(unsigned int vendorId, char const *&reason)
+{
+	if (getEnableDxvk())
+	{
+		reason = "enableDxvk=1";
+		CrashReportInformation::addStaticText("Direct3d9RuntimeSelection: DXVK (%s)\n", reason);
+		return RS_dxvk;
+	}
+
+	if (getPreferDxvkForAmd() && isAmdVendorId(vendorId))
+	{
+		reason = "preferDxvkForAmd=1 and AMD adapter";
+		CrashReportInformation::addStaticText("Direct3d9RuntimeSelection: DXVK (%s, vendorId=0x%04x)\n", reason, vendorId);
+		return RS_dxvk;
+	}
+
+	if (getPreferDxvkForAmd())
+		reason = "preferDxvkForAmd=1 but adapter is not AMD";
+	else
+		reason = "DXVK disabled by config";
+
+	CrashReportInformation::addStaticText("Direct3d9RuntimeSelection: native (%s, vendorId=0x%04x)\n", reason, vendorId);
+	return RS_nativeDirect3d9;
+}
