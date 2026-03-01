@@ -8,6 +8,10 @@
 
 #include "FirstDirect3d9.h"
 
+#if defined(_MSC_VER)
+#include <intrin.h>
+#endif
+
 // ======================================================================
 
 // we are using the arguments (except for file and line), but MSVC can't tell that.
@@ -21,134 +25,50 @@ static void * __cdecl localAllocate(size_t size, uint32 owner, bool array, bool 
 	return MemoryManager::allocate(size, owner, array, leakTest);
 }
 
+// ----------------------------------------------------------------------
+
+static uint32 getAllocationOwner()
+{
+#if defined(_MSC_VER) && defined(_M_IX86)
+	return static_cast<uint32>(reinterpret_cast<uintptr_t>(_ReturnAddress()));
+#else
+	return 0;
+#endif
+}
+
 // ======================================================================
 
-__declspec(naked) void *operator new(size_t size, MemoryManagerNotALeak)
+void *operator new(size_t size, MemoryManagerNotALeak)
 {
-	_asm
-	{
-		// setup local call stack
-		push    ebp
-		mov     ebp, esp
-
-		// localAllocate(size, [return address], false, false)
-		push    0
-		push    0
-		mov     eax, dword ptr [ebp+4]
-		push    eax
-		mov     eax, dword ptr [ebp+8]
-		push    eax
-		call    localAllocate
-		add     esp, 12
-
-		mov     esp, ebp
-		pop     ebp
-		ret
-	}
+	return localAllocate(size, getAllocationOwner(), false, false);
 }
 
 // ----------------------------------------------------------------------
 
-__declspec(naked) void *operator new(size_t size)
+void *operator new(size_t size)
 {
-	_asm
-	{
-		// setup local call stack
-		push    ebp
-		mov     ebp, esp
-
-		// localAllocate(size, [return address], false, true)
-		push    1
-		push    0
-		mov     eax, dword ptr [ebp+4]
-		push    eax
-		mov     eax, dword ptr [ebp+8]
-		push    eax
-		call    localAllocate
-		add     esp, 12
-
-		mov     esp, ebp
-		pop     ebp
-		ret
-	}
+	return localAllocate(size, getAllocationOwner(), false, true);
 }
 
 // ----------------------------------------------------------------------
 
-__declspec(naked) void *operator new[](size_t size)
+void *operator new[](size_t size)
 {
-	_asm
-	{
-		// setup local call stack
-		push    ebp
-		mov     ebp, esp
-
-		// localAllocate(size, [return address], true, true)
-		push    1
-		push    1
-		mov     eax, dword ptr [ebp+4]
-		push    eax
-		mov     eax, dword ptr [ebp+8]
-		push    eax
-		call    localAllocate
-		add     esp, 12
-
-		mov     esp, ebp
-		pop     ebp
-		ret
-	}
+	return localAllocate(size, getAllocationOwner(), true, true);
 }
 
 // ----------------------------------------------------------------------
 
-__declspec(naked) void *operator new(size_t size, const char *file, int line)
+void *operator new(size_t size, const char *file, int line)
 {
-	_asm
-	{
-		// setup local call stack
-		push    ebp
-		mov     ebp, esp
-
-		// localAllocate(size, [return address], false, true)
-		push    1
-		push    0
-		mov     eax, dword ptr [ebp+4]
-		push    eax
-		mov     eax, dword ptr [ebp+8]
-		push    eax
-		call    localAllocate
-		add     esp, 12
-
-		mov     esp, ebp
-		pop     ebp
-		ret
-	}
+	return localAllocate(size, getAllocationOwner(), false, true);
 }
 
 // ----------------------------------------------------------------------
 
-__declspec(naked) void *operator new[](size_t size, const char *file, int line)
+void *operator new[](size_t size, const char *file, int line)
 {
-	_asm
-	{
-		// setup local call stack
-		push    ebp
-		mov     ebp, esp
-
-		// localAllocate(size, [return address], true, true)
-		push    1
-		push    1
-		mov     eax, dword ptr [ebp+4]
-		push    eax
-		mov     eax, dword ptr [ebp+8]
-		push    eax
-		call    localAllocate
-		add     esp, 12
-
-		mov     esp, ebp
-		pop     ebp
-		ret
-	}
+	return localAllocate(size, getAllocationOwner(), true, true);
 }
 
 // ----------------------------------------------------------------------
