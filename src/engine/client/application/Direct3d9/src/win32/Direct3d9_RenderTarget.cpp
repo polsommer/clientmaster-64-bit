@@ -14,7 +14,7 @@
 #include "sharedFoundation/PointerDeleter.h"
 #include "clientGraphics/Texture.h"
 
-#include <d3dx9.h>
+#include <windows.h>
 #include <algorithm>
 #include <map>
 
@@ -45,6 +45,31 @@ namespace Direct3d9_RenderTargetNamespace
 using namespace Direct3d9_RenderTargetNamespace;
 
 // ======================================================================
+
+namespace
+{
+	typedef HRESULT (WINAPI *D3dxLoadSurfaceFromSurfaceFn)(IDirect3DSurface9 *, CONST PALETTEENTRY *, CONST RECT *, IDirect3DSurface9 *, CONST PALETTEENTRY *, CONST RECT *, DWORD, D3DCOLOR);
+
+	HRESULT d3dxLoadSurfaceFromSurface(IDirect3DSurface9 *destinationSurface, RECT const *destinationRect, IDirect3DSurface9 *sourceSurface, RECT const *sourceRect)
+	{
+		static D3dxLoadSurfaceFromSurfaceFn s_function = NULL;
+		static bool s_loaded = false;
+		if (!s_loaded)
+		{
+			s_loaded = true;
+			char const * const libraries[] = { "d3dx9_43.dll", "d3dx9_42.dll", "d3dx9_41.dll" };
+			for (size_t i = 0; i < sizeof(libraries) / sizeof(libraries[0]) && !s_function; ++i)
+			{
+				HMODULE module = LoadLibraryA(libraries[i]);
+				if (module)
+					s_function = reinterpret_cast<D3dxLoadSurfaceFromSurfaceFn>(GetProcAddress(module, "D3DXLoadSurfaceFromSurface"));
+			}
+		}
+		if (!s_function)
+			return E_NOTIMPL;
+		return s_function(destinationSurface, NULL, destinationRect, sourceSurface, NULL, sourceRect, 1, 0);
+	}
+}
 
 void Direct3d9_RenderTarget::install()
 {
@@ -314,7 +339,7 @@ bool Direct3d9_RenderTarget::copyRenderTargetToNonRenderTargetTexture()
 			rMoveRect.bottom = ms_copyHeight;
 
 			// copy the system memory surface to the user surface
-			hresult = D3DXLoadSurfaceFromSurface(ms_userSurface, NULL, &rMoveRect, ms_systemMemorySurface, NULL, &rMoveRect, D3DX_FILTER_NONE, 0);
+			hresult = d3dxLoadSurfaceFromSurface(ms_userSurface, &rMoveRect, ms_systemMemorySurface, &rMoveRect);
 			FATAL_DX_HR("D3DXLoadSurfaceFromSurface failed %s", hresult);
 		}
 	}

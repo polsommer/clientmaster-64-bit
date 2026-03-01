@@ -17,7 +17,7 @@
 #include "sharedFoundation/Os.h"
 #include "clientGraphics/TextureFormatInfo.h"
 
-#include <d3dx9tex.h>
+#include <windows.h>
 #include <map>
 
 // ======================================================================
@@ -25,6 +25,37 @@
 const Tag TAG_ENVM = TAG(E,N,V,M);
 
 // ======================================================================
+
+namespace
+{
+	typedef HRESULT (WINAPI *D3dxLoadSurfaceFromSurfaceFn)(IDirect3DSurface9 *, CONST PALETTEENTRY *, CONST RECT *, IDirect3DSurface9 *, CONST PALETTEENTRY *, CONST RECT *, DWORD, D3DCOLOR);
+
+	D3dxLoadSurfaceFromSurfaceFn getD3dxLoadSurfaceFromSurface()
+	{
+		static D3dxLoadSurfaceFromSurfaceFn s_function = NULL;
+		static bool s_loaded = false;
+		if (!s_loaded)
+		{
+			s_loaded = true;
+			char const * const libraries[] = { "d3dx9_43.dll", "d3dx9_42.dll", "d3dx9_41.dll" };
+			for (size_t i = 0; i < sizeof(libraries) / sizeof(libraries[0]) && !s_function; ++i)
+			{
+				HMODULE module = LoadLibraryA(libraries[i]);
+				if (module)
+					s_function = reinterpret_cast<D3dxLoadSurfaceFromSurfaceFn>(GetProcAddress(module, "D3DXLoadSurfaceFromSurface"));
+			}
+		}
+		return s_function;
+	}
+
+	HRESULT d3dxLoadSurfaceFromSurface(IDirect3DSurface9 *destinationSurface, RECT const *destinationRect, IDirect3DSurface9 *sourceSurface, RECT const *sourceRect)
+	{
+		D3dxLoadSurfaceFromSurfaceFn fn = getD3dxLoadSurfaceFromSurface();
+		if (!fn)
+			return E_NOTIMPL;
+		return fn(destinationSurface, NULL, destinationRect, sourceSurface, NULL, sourceRect, 1, 0);
+	}
+}
 
 Direct3d9_TextureData::PixelFormatInfo     Direct3d9_TextureData::ms_pixelFormatInfoArray[TF_Count];
 MemoryBlockManager                        *Direct3d9_TextureData::ms_memoryBlockManager;
@@ -645,7 +676,7 @@ void Direct3d9_TextureData::lock(LockData &lockData)
 			source.bottom = lockData.getY() + lockData.getHeight();
 
 			// copy and convert the texture bits
-			hresult = D3DXLoadSurfaceFromSurface(plainSurface, NULL, NULL, surface, NULL, &source, D3DX_FILTER_NONE, 0);
+			hresult = d3dxLoadSurfaceFromSurface(plainSurface, NULL, surface, &source);
 			FATAL_DX_HR("D3DXLoadSurfaceFromSurface failed %s", hresult);
 
 			// release the d3d surface
@@ -712,7 +743,7 @@ void Direct3d9_TextureData::unlock(LockData &lockData)
                         dest.top    = lockData.getY();
                         dest.right  = lockData.getX() + lockData.getWidth();
                         dest.bottom = lockData.getY() + lockData.getHeight();
-                        hresult = D3DXLoadSurfaceFromSurface(surface, NULL, &dest, plainSurface, NULL, NULL, D3DX_FILTER_NONE, 0);
+                        hresult = d3dxLoadSurfaceFromSurface(surface, &dest, plainSurface, NULL);
                         FATAL_DX_HR("D3DXLoadSurfaceFromSurface failed %s", hresult);
 
                         // free the resources
@@ -792,7 +823,7 @@ void  Direct3d9_TextureData::copyFrom(int surfaceLevel, TextureGraphicsData cons
 		FATAL_DX_HR("Direct3d9_TextureData::copyFrom() GetSurfaceLevel dst failed %s", hresult);
 	}
 
-	HRESULT const hresult = D3DXLoadSurfaceFromSurface(surfaceDst, NULL, &rectDst, surfaceSrc, NULL, &rectSrc, D3DX_FILTER_NONE, 0);
+	HRESULT const hresult = d3dxLoadSurfaceFromSurface(surfaceDst, &rectDst, surfaceSrc, &rectSrc);
 	FATAL_DX_HR("Direct3d9_TextureData::copyFrom() D3DXLoadSurfaceFromSurface failed %s", hresult); 
 
 	surfaceDst->Release();

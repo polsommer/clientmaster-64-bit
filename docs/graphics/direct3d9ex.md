@@ -47,3 +47,12 @@ When DXVK toggles are present in `[Direct3d9]`, runtime selection follows this o
 4. If 9Ex entry points are unavailable, it falls back to classic Direct3D 9.
 
 Defaults keep existing behavior unless explicitly changed (`enableDxvk=0`, `preferDxvkForAmd=0`).
+
+
+## Migration note: deprecated utility libraries
+
+As of the 64-bit renderer dependency cleanup, the Direct3D 9 projects (`Direct3d9`, `Direct3d9_ffp`, `Direct3d9_vsps`) no longer link `dxerr9.lib` or `d3dx9.lib`.
+
+- HRESULT diagnostics now use local `FormatMessage` formatting instead of `DXGetErrorString` helpers.
+- Legacy D3DX entry points used by shader assembly/compilation and surface copy helpers are resolved dynamically at runtime from `d3dx9_4x.dll` when present.
+- Support guidance: if shader compilation or texture conversion fails on a machine missing D3DX runtime DLLs, install the DirectX End-User Runtime (June 2010) or validate equivalent redistributable coverage.

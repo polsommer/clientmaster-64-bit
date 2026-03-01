@@ -22,7 +22,8 @@ class  Vector;
 class  VertexBufferVector;
 
 #include <d3d9.h>
-#include <dxerr9.h>
+#include <windows.h>
+#include <stdio.h>
 
 #include "../../../../../../engine/shared/library/sharedFoundation/include/public/sharedFoundation/Tag.h"
 #include "clientGraphics/Texture.def"
@@ -31,7 +32,23 @@ class VectorRgba;
 
 // ======================================================================
 // Fancy FATAL_DX_HR macro with debug string.
-#define FATAL_DX_HR(a,b)       FATAL(FAILED(b), (a, DXGetErrorString9(b)))
+static inline char const *Direct3d9FormatHresult(HRESULT hresult)
+{
+	static __declspec(thread) char messageBuffer[512];
+	DWORD const flags = FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS;
+	DWORD const language = MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT);
+	DWORD count = FormatMessageA(flags, NULL, static_cast<DWORD>(hresult), language, messageBuffer, sizeof(messageBuffer), NULL);
+	if (count == 0)
+		_snprintf(messageBuffer, sizeof(messageBuffer), "HRESULT 0x%08lx", static_cast<unsigned long>(hresult));
+	else
+	{
+		while (count > 0 && (messageBuffer[count - 1] == '\r' || messageBuffer[count - 1] == '\n'))
+			messageBuffer[--count] = '\0';
+	}
+	return messageBuffer;
+}
+
+#define FATAL_DX_HR(a,b)       FATAL(FAILED(b), (a, Direct3d9FormatHresult(b)))
 
 class Direct3d9
 {
