@@ -13,8 +13,11 @@ cmake --build build
 For Visual Studio 2022 on Windows, pass the provided toolchain file:
 
 ```bash
-cmake -S . -B build -G "Visual Studio 17 2022" \
-      -T v143 \
+cmake -S . -B build-win32 -G "Visual Studio 17 2022" \
+      -A Win32 \
+      -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/Windows-MSVC.cmake
+
+cmake -S . -B build-x64 -G "Visual Studio 17 2022" \
       -A x64 \
       -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/Windows-MSVC.cmake
 ```
