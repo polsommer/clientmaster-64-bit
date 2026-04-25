@@ -11,7 +11,7 @@ The AI Load Tester plugin exposes a headless bot controller that connects accoun
    cmake --build build
    ```
 
-2. The compiled module is emitted to `plugin/ai_load_tester/` alongside its `plugin.json` manifest.
+2. The compiled module is emitted to `plugin/ai_load_tester/<arch>/` (for example `win32` or `win64`) while `plugin.json` remains at `plugin/ai_load_tester/plugin.json`.
 
 3. The legacy Visual Studio solution (`src/build/win32/swg.sln`) also includes an `AiLoadTesterPlugin` project for Visual Studio 2013 builds. Building that project outputs `AiLoadTesterPlugin.dll` to `compile/win32/AiLoadTesterPlugin/<Configuration>/` alongside its import library and PDB.
 
@@ -157,7 +157,7 @@ For context, a minimal `swg+setup` with these overrides might resemble the follo
 
 ## Running with `SwgClient_r.exe`
 
-1. Copy the built plugin binary (`AiLoadTesterPlugin.dll`) and the `plugin.json` manifest into the `plugin/ai_load_tester/` directory beside `SwgClient_r.exe`.
+1. Copy the built plugin binary (`AiLoadTesterPlugin.dll`) into `plugin/ai_load_tester/<arch>/` beside `SwgClient_r.exe`, and keep `plugin/ai_load_tester/plugin.json` (plus `scenario.sample.json`) at the manifest root.
 2. Place your scenario file at `plugin/ai_load_tester/Swg+ai.cfg` (or point `SWG_AI_LOAD_SCENARIO` at another path if you prefer a different filename such as `plugin/ai_load_tester/scenario.json`).
 3. Start `SwgClient_r.exe` with plugin loading enabled. The client logs an `AI Load Tester plugin loaded` message if initialization succeeds and will immediately start the scenario when `Swg+ai.cfg` exists.
 

@@ -3,5 +3,9 @@
   "description": "Headless AI controller for scripted login and navigation load tests.",
   "entryPoint": "SwgRegisterPlugin",
   "compatibleApiMin": "1.0.0",
-  "compatibleApiMax": "1.0.0"
+  "compatibleApiMax": "1.0.0",
+  "supportedArchitectures": [
+    "x86",
+    "x64"
+  ]
 }

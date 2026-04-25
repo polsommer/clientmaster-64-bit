@@ -16,5 +16,9 @@
   "dependencies": {
     "core": ">=1.0.0",
     "terrain": ">=2.0.0"
-  }
+  },
+  "supportedArchitectures": [
+    "x86",
+    "x64"
+  ]
 }

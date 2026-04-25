@@ -7,7 +7,7 @@ ship production features; instead it demonstrates how brush presets, collaborati
 
 1. Configure the project with CMake (see the root `CMakeLists.txt`).
 2. Build the `WorldBuilderProceduralPlugin` target for your platform.
-3. Drop the produced binary next to `plugin.json` so that the God Client can discover it at runtime.
+3. Copy the produced binary into `plugin/examples/world_builder_procedural/<arch>/` (for example `win32` or `win64`) while keeping `plugin.json` in `plugin/examples/world_builder_procedural/`.
 
 ## Runtime behaviour
 
