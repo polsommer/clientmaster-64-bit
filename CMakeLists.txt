@@ -74,12 +74,31 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_library(swg_plugin_api INTERFACE)
+
+add_library(swg_plugin_manifest STATIC
+    src/engine/shared/plugin/PluginManifest.cpp
+)
+
+target_include_directories(swg_plugin_manifest
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/engine/shared/plugin
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/external/3rd/library/webAPI
+)
+
+set_target_properties(swg_plugin_manifest PROPERTIES
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED ON
+    CXX_EXTENSIONS OFF
+)
+
 target_include_directories(swg_plugin_api
     INTERFACE
         ${CMAKE_CURRENT_SOURCE_DIR}/src/engine/shared
 )
 
 target_compile_features(swg_plugin_api INTERFACE cxx_std_20)
+
 
 add_library(WorldBuilderProceduralPlugin MODULE
     plugin/examples/world_builder_procedural/WorldBuilderProceduralPlugin.cpp
@@ -140,15 +159,15 @@ set_target_properties(AiLoadTesterPlugin PROPERTIES
 )
 
 install(TARGETS WorldBuilderProceduralPlugin
-    RUNTIME DESTINATION plugin/examples/world_builder_procedural
-    LIBRARY DESTINATION plugin/examples/world_builder_procedural
-    ARCHIVE DESTINATION plugin/examples/world_builder_procedural
+    RUNTIME DESTINATION plugin/examples/world_builder_procedural/${SWG_OUTPUT_PLATFORM_ARCH}
+    LIBRARY DESTINATION plugin/examples/world_builder_procedural/${SWG_OUTPUT_PLATFORM_ARCH}
+    ARCHIVE DESTINATION plugin/examples/world_builder_procedural/${SWG_OUTPUT_PLATFORM_ARCH}
 )
 
 install(TARGETS AiLoadTesterPlugin
-    RUNTIME DESTINATION plugin/ai_load_tester
-    LIBRARY DESTINATION plugin/ai_load_tester
-    ARCHIVE DESTINATION plugin/ai_load_tester
+    RUNTIME DESTINATION plugin/ai_load_tester/${SWG_OUTPUT_PLATFORM_ARCH}
+    LIBRARY DESTINATION plugin/ai_load_tester/${SWG_OUTPUT_PLATFORM_ARCH}
+    ARCHIVE DESTINATION plugin/ai_load_tester/${SWG_OUTPUT_PLATFORM_ARCH}
 )
 
 install(FILES
