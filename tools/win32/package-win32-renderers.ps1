@@ -3,7 +3,7 @@ param(
     [ValidateSet('Release', 'Optimized', 'Debug')]
     [string]$Configuration = 'Release',
 
-    [ValidateSet('win64')]
+    [ValidateSet('win32', 'win64')]
     [string]$Architecture = 'win64',
 
     [ValidateSet('native', 'dxvk')]
@@ -21,7 +21,9 @@ $ErrorActionPreference = 'Stop'
 
 $rendererProjects = @('Direct3d9', 'Direct3d9_ffp', 'Direct3d9_vsps')
 $compileRoot = Join-Path $RepositoryRoot (Join-Path 'src\compile' $Architecture)
-$dxvkArchFolder = 'x64'
+$otherArchitecture = if ($Architecture -eq 'win32') { 'win64' } else { 'win32' }
+$otherCompileRoot = Join-Path $RepositoryRoot (Join-Path 'src\compile' $otherArchitecture)
+$dxvkArchFolder = if ($Architecture -eq 'win32') { 'x86' } else { 'x64' }
 $dxvkDll = Join-Path $RepositoryRoot (Join-Path 'src\external\3rd\dxvk\2.4' (Join-Path $dxvkArchFolder 'd3d9.dll'))
 
 function Write-DxvkConfigFile {
@@ -60,11 +62,55 @@ function Write-DxvkConfigFile {
     Set-Content -Path $TargetPath -Value ($profileLines -join "`r`n") -Encoding ASCII
 }
 
+function Get-RendererDllCount {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$BaseCompileRoot
+    )
+
+    $count = 0
+    foreach ($project in $rendererProjects) {
+        $sourceDir = Join-Path $BaseCompileRoot (Join-Path $project $Configuration)
+        if (-not (Test-Path $sourceDir)) {
+            continue
+        }
+
+        $count += (Get-ChildItem -Path $sourceDir -Filter '*.dll' -File | Measure-Object).Count
+    }
+
+    return $count
+}
+
 if (-not $ClientOutputDirs -or $ClientOutputDirs.Count -eq 0) {
     $ClientOutputDirs = @(
         (Join-Path $compileRoot (Join-Path 'SwgClient' $Configuration)),
         (Join-Path $compileRoot (Join-Path 'SwgClientSetup' $Configuration))
     )
+}
+
+$normalizedCompileRoot = [System.IO.Path]::GetFullPath($compileRoot)
+$normalizedOtherCompileRoot = [System.IO.Path]::GetFullPath($otherCompileRoot)
+for ($i = 0; $i -lt $ClientOutputDirs.Count; $i++) {
+    $normalizedTarget = [System.IO.Path]::GetFullPath($ClientOutputDirs[$i])
+    if ($normalizedTarget.StartsWith($normalizedOtherCompileRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+        throw "Client output target '$normalizedTarget' points at '$otherArchitecture'. Refusing cross-architecture packaging for '$Architecture'."
+    }
+
+    $ClientOutputDirs[$i] = $normalizedTarget
+}
+
+$rendererDllCountForArch = Get-RendererDllCount -BaseCompileRoot $compileRoot
+$rendererDllCountForOtherArch = Get-RendererDllCount -BaseCompileRoot $otherCompileRoot
+if ($rendererDllCountForArch -eq 0 -and $rendererDllCountForOtherArch -gt 0) {
+    throw "No renderer DLLs found under '$compileRoot' for '$Architecture', but found $rendererDllCountForOtherArch under '$otherCompileRoot'. Refusing cross-architecture packaging."
+}
+
+if ($Runtime -eq 'dxvk' -and -not (Test-Path $dxvkDll)) {
+    $otherDxvkArchFolder = if ($dxvkArchFolder -eq 'x86') { 'x64' } else { 'x86' }
+    $otherDxvkDll = Join-Path $RepositoryRoot (Join-Path 'src\external\3rd\dxvk\2.4' (Join-Path $otherDxvkArchFolder 'd3d9.dll'))
+    if (Test-Path $otherDxvkDll) {
+        throw "DXVK runtime file for '$Architecture' is missing: $dxvkDll. Found only '$otherDxvkDll'; refusing cross-architecture packaging."
+    }
 }
 
 $resolvedTargets = [System.Collections.Generic.List[string]]::new()
@@ -113,7 +159,7 @@ if ($Runtime -eq 'dxvk') {
         Write-DxvkConfigFile -TargetPath (Join-Path $target 'dxvk.conf')
     }
 
-    Write-Host "DXVK runtime enabled. Copied d3d9.dll and generated dxvk.conf in $($resolvedTargets.Count) output target(s)."
+    Write-Host "DXVK runtime enabled. Copied d3d9.dll ($dxvkArchFolder) and generated dxvk.conf in $($resolvedTargets.Count) output target(s)."
 } else {
     foreach ($target in $resolvedTargets) {
         $nativeDll = Join-Path $target 'd3d9.dll'
